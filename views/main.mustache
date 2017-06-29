@@ -14,15 +14,33 @@
 
   <ul>
     {{#theStuff}}
-    <li>{{name}}</li>
-    <form class="" action="/TheList" method="post">
-      <button class="competeButton" type="submit">Complete</button>
-    </form>
-    <form class="" action="/TheList/delete" method="post">
-      <button class="deleteButton" type="submit" name="deleteIt" value="{{id}}">Delete It!</button>
-    </form>
+      {{^completed}}
+        <li>{{name}}</li>
+        <form class="" action="/TheList/Complete" method="post">
+          <button class="competeButton" name="completeIt" type="submit" value="{{id}}">Complete</button>
+        </form>
+        <form class="" action="/TheList/delete" method="post">
+          <button class="deleteButton" type="submit" name="deleteIt" value="{{id}}">Delete It!</button>
+        </form>
+      {{/completed}}
     {{/theStuff}}
   </ul>
+
+  <h1> Completed </h1>
+
+  <!-- <form class="completedForm" action="/TheList/CompletedTasks" method="post"> -->
+    <ul>
+    {{#theStuff}}
+      {{#completed}}
+        <li>{{name}}</li>
+        <form class="" action="/TheList/delete" method="post">
+          <button class="deleteButton" type="submit" name="deleteIt" value="{{id}}">Delete It!</button>
+        </form>
+      {{/completed}}
+    {{/theStuff}}
+  </ul>
+
+  <!-- </form> -->
 
 
 
